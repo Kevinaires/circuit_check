@@ -1,0 +1,20 @@
+
+                      V2C 1.12 - VHDL to C translator
+                      -------------------------------
+
+                    Copyright (c) 1995, Cristian Ghezzi
+
+
+
+EXAMPLES DIRECTORY
+
+This directory contains some input files for v2c and v2cx, together with
+their output.
+ - Files called xxx.vhd are VHDL sources;
+ - Files called xxx.c are the respective translations;
+ - Files called xxx.cont are the 'interface description': they list input and
+   output signals;
+ - Files called xxx.v2cx are the v2cx stdout output;
+ - Files called xxx.v2c are the v2c stdout output.
+
+Have a look at 'first1.vhd' for a start.

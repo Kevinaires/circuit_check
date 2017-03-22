@@ -1,0 +1,49 @@
+
+                      V2C 1.12 - VHDL to C translator
+                      -------------------------------
+
+                    Copyright (c) 1995, Cristian Ghezzi
+
+
+
+These are the sources of v2c and v2cx, two programs that try to translate a
+VHDL source into a C function.
+
+This is the first public release: no documentation (have a look at my www
+pages), clumsy code, few comments, bugs (?) ...
+No improvements are planned, so be happy with it; only a large and
+enthusiastic response could make things change.
+
+In the examples directory you can find (imagine what...) some examples of
+input and output files.
+
+See the install file to build the binaries.
+
+
+-------------------------------------------------------------------------------
+COPYRIGHT NOTICE
+
+You may copy and distribute them freely as long as you preserve all the
+original files, including this one.
+
+You can modify and distribute them, as long as you preserve the contents of
+this file, add your name and comments about your improvements, and send a
+copy to the original author.
+
+You can sell them for profit (?), after agreement with the original author.
+
+In any case, if you find them useful, the smallest DONATION would be welcome
+(sorry, no credit card facilities).
+
+
+-------------------------------------------------------------------------------
+
+Cristian Ghezzi   cug0308@cdc715_0.cdc.polimi.it
+
+                  http://cdc715_0.cdc.polimi.it/~cug0308/
+
+                  Address:
+                  via B. da Urbino 2
+                  20035 Lissone
+                  Italy
+                  fax: +39 39 794771

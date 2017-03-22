@@ -1,0 +1,61 @@
+<html>
+<head>
+<title>v2c intro</title>
+</head>
+<body background="../BOldWall26.jpg">
+<centre>
+<a href="../travels.html"><img src="../LeftSmM.gif" alt="Prev"></a>
+<img src="../SpaceM.gif" alt="-">
+<img src="../SpaceM.gif" alt="-">
+<a href="../index.html"><img src="../X1smM.gif" alt="Home"></a>
+<img src="../SpaceM.gif" alt="-">
+<img src="../SpaceM.gif" alt="-">
+<a href="v2cex.html"><img src="../RightSmM.gif" alt="Next"></a><p>
+<hr>
+<h1>V2C: VHDL to C translator</h1>
+</centre>
+<dfn>v2c</dfn> is a tool that automatically translates a VHDL source into an equivalent C program, i.e. a C function with the same input-output behaviour of the digital circuit the VHDL represents.<p align=center>
+
+<img src = "img1.gif" alt="General scheme of the translation"><p>
+
+It has been realized by two students as an exam task, and is far from being a state-of-the-art product...<p>
+
+v2c can cope with data-flow and behavioural architectures, sequential or combinatorial, with most of the sequential and concurrent statements supported.
+<p>
+<p>
+
+The goals of the project are the following:<p>
+<ul>
+<li> <em>Fidelity</em>: the C code behaves exactly like the VHDL source.
+<li> <em>Readability</em>: the code, although fairly complex, is human-readable and modifiable.
+<li> <em>Observability</em>: the circuit internal state (if one exists) can be easily observed.
+<li> <em>Controllability</em>: the internal state can be easily modified.
+<li> <em>Flexibility</em>: several switches lets you alter the translation to suit hardware and software needs.
+</ul>
+
+The tool is easy to use and comes with an interface, called <dfn>v2cx</dfn>, that can analyse the input and give the appropriate arguments to v2c.<p align=center>
+
+<img src = "img3.gif" alt="Flow Graph"><p>
+
+<p>
+<hr>
+
+More information is available on-line: <a href="v2cex.html">some examples,</a> the <a href="v2cgram.html">translation grammar</a> and the <a href="v2cinpt.html">input format.</a><p>
+
+<p>
+
+A postscript <a href="file://v2ciman.ps.gz">italian manual</a> is also available.<p>
+
+<p>
+
+
+
+For any question and comment or for free sources, <A Href="mailto:cug0308@cdc715_0.cdc.polimi.it"> mail Cristian Ghezzi.</a>
+
+<hr>
+<address><p align=center>
+<img src = "../X1smM.gif">Cristian Ghezzi - cug0308@cdc715_0.cdc.polimi.it
+<img src = "../X1smM.gif">
+</address>
+</body>
+</html>

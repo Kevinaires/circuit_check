@@ -1,0 +1,13 @@
+%v2cx first1.vhd
+v2c eXpert interface - (c) by C.Ghezzi - 1.12 (Oct 10th 1995)
+Diagnostic: Signal 'aaa' in process 'myproc1'
+            not included in sensitivity list
+            --> sequential architecture
+Line:  47
+Final Report: sequential weight = 5 , combinatorial weight = 0
+              --> Architecture is sequential at 100%
+v2c first1.vhd
+%
+
+(The last line is v2cx suggestion for the command to run the translation)
+(In this case no switches are necessary.                                )

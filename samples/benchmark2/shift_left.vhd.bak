@@ -1,0 +1,23 @@
+LIBRARY ieee;
+USE ieee.std_logic_1164.ALL;
+
+
+ENTITY shift_left IS
+PORT(a: IN BIT_VECTOR(3 DOWNTO 0);
+     s: OUT BIT_VECTOR(3 DOWNTO 0)
+	 );
+END shift_left;
+
+ARCHITECTURE behavior OF shift_left IS
+BEGIN
+	process(a)
+	begin
+		for i 0 to 2 then
+		a(i) <= a(i+1);
+		end loop;
+		a(3) <= 0;
+END behavior;
+
+0110
+1100
+

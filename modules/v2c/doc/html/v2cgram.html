@@ -1,0 +1,166 @@
+<html>
+<head>
+<title>v2c grammar</title>
+</head>
+<body background="../BOldWall26.jpg">
+<centre>
+<a href="v2cex.html"><img src="../LeftSmM.gif" alt="Prev"></a>
+<img src="../SpaceM.gif" alt="-">
+<img src="../SpaceM.gif" alt="-">
+<a href="../index.html"><img src="../X1smM.gif" alt="Home"></a>
+<img src="../SpaceM.gif" alt="-">
+<img src="../SpaceM.gif" alt="-">
+<a href="v2cinpt.html"><img src="../RightSmM.gif" alt="Next"></a><p>
+<hr>
+<h1>V2C: VHDL to C translator</h1>
+</centre>
+<h2>Translation Grammar in Yacc Format</h2>
+<pre>
+
+trad    : rem entity rem archi rem
+rem     : /* Empty */
+        | remlist
+remlist : REM
+        | REM remlist
+entity  : ENTITY NAME IS portstats END NAME ';'
+portstats : PORT '(' portlist ')' ';'
+          | PORT '(' portlist ')' ';' portstats
+portlist: signamelist ':' dirtype
+        | signamelist ':' dirtype ';' portlist
+signamelist : NAME
+            | signamelist ',' NAME
+dirtype : dir type
+dir     : IN
+        | OUT
+type    : BIT
+        | STD_ULOGIC_VECTOR '(' vec_range ')'
+        | INTEGER
+        | INTEGER RANGE NATURAL TO NATURAL
+vec_range : NATURAL DOWNTO NATURAL
+          | NATURAL
+archi   : ARCHITECTURE NAME OF NAME IS a_decl
+          BEGN a_body END NAME ';'
+a_decl  : rem
+        | rem SIGNAL signamelist ':' type decl_init ';' a_decl
+decl_init : /* Empty */
+          | ':' '=' expr
+a_body  : rem a_stat rem
+        | rem a_stat a_body
+a_stat  : a_assign
+        | with
+        | block
+        | process
+expr    : NAME
+        | signame '(' vec_range ')'
+        | NATURAL
+        | '\'' NATURAL '\''
+        | STRING
+        | expr '&amp;' expr
+        | '-' expr %prec UNARYMINUS
+        | '+' expr %prec UNARYPLUS
+        | expr '+' expr
+        | expr '-' expr
+        | expr '*' expr
+        | expr '/' expr
+        | NOT expr
+        | expr AND expr
+        | expr OR expr
+        | expr XOR expr
+        | '(' expr ')'
+        | NAME '\'' LASTVALUE
+exprc   : conf
+        | '(' exprc ')'
+        | exprc AND exprc %prec ANDL
+        | exprc OR exprc %prec ORL
+        | NOT exprc %prec NOTL
+        | NAME '\'' EVENT
+conf    : expr '=' expr %prec EQUAL
+        | expr '&gt;' expr
+        | expr '&gt;' '=' expr %prec BIGEQ
+        | expr '&lt;' expr
+        | expr '&lt;' '=' expr %prec LESSEQ
+        | expr '&lt;' '&gt;' expr %prec NOTEQ
+a_assign: signal '&lt;' '=' sigvalue
+signal  : signame
+        | signame '(' vec_range ')'
+signame : NAME
+sigvalue: expr ';'
+        | expr WHEN exprc';'
+        | expr WHEN exprc ELSE sigvalue
+with    : WITH expr SELECT signal '&lt;' '=' selectlist
+selectlist : expr WHEN expr ';'
+         | expr WHEN OTHERS ';'
+         | expr WHEN expr ',' selectlist
+block   : bname1 BLOCK blockguard b_decl
+          BEGN b_body END BLOCK bname2 ';'
+bname1  : NAME ':'
+bname2  : /* Null */
+        | NAME
+blockguard : /* Null */
+           | '(' exprc ')'
+b_decl  : a_decl
+b_body  : a_body
+process : pname1 PROCESS psensi p_decl
+          BEGN p_body END PROCESS pname2 ';'
+pname1  : /* Empty */
+        | NAME ':'
+pname2  : /* Empty */
+        | NAME
+psensi  : /* Empty */
+        | '(' sensilist ')'
+sensilist : signal
+          | sensilist ',' signal
+p_decl  : rem
+        | rem VARIABLE varnamelist ':' type var_init ';' p_decl
+varnamelist : NAME
+            | NAME ',' varnamelist
+var_init: /* Empty */
+        | ':' '=' expr
+p_body  : rem p_stat rem
+        | rem p_stat p_body
+p_stat  : a_assign
+        | p_assign
+        | ifstat
+        | case
+        | loop
+        | next
+        | exit
+        | wait
+p_assign: NAME ':' '=' p_expr ';'
+ifstat  : IF p_exprc THEN p_body elsepart END IF ';'
+elsepart: /* Empty */
+        | ELSIF p_exprc THEN p_body elsepart
+        | ELSE p_body
+p_expr  : expr
+p_exprc : exprc
+        | p_expr
+case    : CASE p_expr IS caselist END CASE ';'
+caselist: /* Empty */
+        | WHEN choice '=' '&gt;' p_body caselist
+        | WHEN OTHERS '=' '&gt;' p_body
+choice  : p_expr
+        | p_expr '|' choice
+loop    : lname1 loopscheme LOOP p_body END LOOP lname2 ';'
+lname1  : /* Empty */
+        | NAME ':'
+lname2  : pname2
+loopscheme : WHILE p_exprc
+           | FOR NAME IN p_expr loopdir p_expr
+loopdir : TO
+        | DOWNTO
+next    : NEXT ';'
+exit    : EXIT ';'
+wait    : WAIT waitcond ';'
+waitcond: UNTIL exprc
+        | ON waitsig
+waitsig : signal
+        | waitsig ',' signal
+</pre>
+
+<hr>
+<address><p align=center>
+<img src = "../X1smM.gif">Cristian Ghezzi - cug0308@cdc715_0.cdc.polimi.it
+<img src = "../X1smM.gif">
+</address>
+</body>
+</html>

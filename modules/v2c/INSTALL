@@ -1,0 +1,31 @@
+
+                      V2C 1.12 - VHDL to C translator
+                      -------------------------------
+
+                    Copyright (c) 1995, Cristian Ghezzi
+
+
+
+INSTALLATION NOTES
+
+There should be no problems in setting the whole thing up: you shouldn't ever
+need Yacc nor Lex since the generated c sources are provided.
+
+Just type 'make' and hope.
+
+
+-------------------------------------------------------------------------------
+MORE DETAILED INSTALLATION NOTES
+
+1. Edit 'makefile' to match your operating system.
+   By default it is configured to work under UNIX (not SUN_OS).
+
+2. Edit the defs.h file to match your needs.
+
+3. Run make.
+
+4. Ignore warnings like `offset -1 in address` or `declared but not used`
+
+5. If you get errors like `don't know how to make xxx.x` run make again.
+
+==> You should end up with v2c and v2cx.

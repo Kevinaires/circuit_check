@@ -1,0 +1,135 @@
+<html>
+<head>
+<title>v2c syntax</title>
+</head>
+<body background="../BOldWall26.jpg">
+<centre>
+<a href="v2cgram.html"><img src="../LeftSmM.gif" alt="Prev"></a>
+<img src="../SpaceM.gif" alt="-">
+<img src="../SpaceM.gif" alt="-">
+<a href="../index.html"><img src="../X1smM.gif" alt="Home"></a>
+<img src="../SpaceM.gif" alt="-">
+<img src="../SpaceM.gif" alt="-">
+<img src="../SpaceM.gif" alt="-">
+<hr>
+<h1>V2C: VHDL to C translator</h1>
+</centre>
+<h2>Syntax of Input Files</h2>
+The program takes as input a file with the entity declaration followed by the architecture description. Comments are accepted in almost every place of the source and no restrictions are placed on white space characters. Keywords can be both upper and lower case, but not mixed.
+
+The entity can have an arbitrary number of 'port' statements.<p>
+Recognized directions:
+<ul>
+<li>                IN
+<li>                OUT
+</ul>
+Recognized types:
+<ul>
+<li>              BIT
+<li>              STD_ULOGIC
+<li>              QSIM_STATE
+<li>              STD_ULOGIC_VECTOR([&lt;n &gt; | &lt;n1 &gt; DOWNTO &lt;n2 &gt;])
+<li>              INTEGER [RANGE &lt;n1 &gt; TO &lt;n2 &gt;]
+</ul>
+
+The architecture definition has the following syntax:
+
+<pre>
+ARCHITECTURE &lt;a_name&gt; OF &lt;e_name&gt; IS
+  [SIGNAL &lt;name_1&gt; [, &lt;name_n&gt;] : &lt;type&gt; [:= &lt;expr&gt;] ;]
+  BEGIN
+    [&lt;Assignments&gt;]
+    [&lt;With&gt;]
+    [&lt;Process&gt;]
+    [&lt;Block&gt;]
+END &lt;a_name&gt; ;
+</pre>
+
+Assignments are of type &lt;Signal&gt; &lt;= &lt;expr&gt; [WHEN &lt;expr&gt; [ELSE &lt;...&gt;]];<br>
+Operands in expressions can be signals, variables, integers, strings, characters (eg. '0');<br>
+operators are: &amp (concatenation), -, +, *, /, NOT, AND, OR, XOR and arbitrarily deep parentheses;<br>
+in conditional expressions the operands are: AND, OR, NOT, =, &gt;, &gt;=, &lt;, &lt;=, &lt;&gt;.<p>
+
+<ul>
+<li> with
+<pre>
+        WITH &lt;expr&gt; SELECT
+                &lt;name&gt; &lt;= &lt;expr&gt; WHEN &lt;expr&gt;
+                [, &lt;expr&gt; WHEN &lt;expr&gt;]
+                [, &lt;expr&gt; WHEN OTHERS] ;
+
+</pre>
+<li> process
+<pre>
+        [&lt;proc_name&gt; :] PROCESS [(&lt;name_1&gt;, ..., &lt;name_n&gt;)]
+                [VARIABLE &lt;var_1&gt;, ..., &lt;var_n&gt; : &lt;type&gt; [:= &lt;expr&gt;] ;]
+                BEGIN
+                        [&lt;Assignments&gt;]
+                        [&lt;If-clause&gt;]
+                        [&lt;Case&gt;]
+                        [&lt;Loop&gt;]
+                        [NEXT]
+                        [EXIT]
+                        [&lt;Wait&gt;]
+                END PROCESS [&lt;proc_name&gt;] ;
+</pre>
+
+Variable assignments use the := operator.
+
+<li> if-clause
+<pre>
+        IF &lt;expr&gt; THEN &lt;Statements&gt;
+                [ELSEIF &lt;expr&gt; THEN &lt;Statements&gt;]
+                [ELSE &lt;Statements&gt;]
+        END IF ;
+</pre>
+
+&lt;Statements&gt; stands for any sequence of instructions that can be used in a process (if, case, loop, next, etc.).
+
+<li> case
+<pre>
+        CASE &lt;expr&gt; IS
+                [WHEN &lt;expr&gt; [| &lt;expr&gt; [| ...]] =&gt; &lt;Statements&gt;]
+                [WHEN OTHERS =&gt; &lt;Statements&gt;]
+        END CASE ;
+
+</pre>
+<li> loop
+<pre>
+        [&lt;loop_name&gt; :]
+                [WHILE &lt;expr&gt; | FOR &lt;name&gt; IN &lt;expr&gt; [TO|DOWNTO] &lt;expr&gt;]
+                LOOP
+                        &lt;Statements&gt;
+                END LOOP [&lt;loop_name&gt;] ;
+
+</pre>
+
+<li> wait
+<pre>
+        WAIT [UNTIL &lt;expr&gt; | ON &lt;name&gt; [, ..., &lt;name&gt;]] ;
+
+</pre>
+
+<li> block
+<pre>
+        &lt;b_name&gt; : BLOCK [(&lt;expr&gt;)]
+                [SIGNAL &lt;name_1&gt; [, &lt;name_n&gt;] : &lt;type&gt; [:= &lt;expr&gt;] ;]
+                BEGIN
+                        [&lt;Assegnamenti&gt;]
+                        [&lt;With&gt;]
+                        [&lt;Process&gt;]
+                        [&lt;Block&gt;]
+                END BLOCK &lt;b_name&gt; ;
+
+</pre>
+
+There are no limits to block nesting, and names can be repeated in different blocks.
+</ul>
+
+<hr>
+<address><p align=center>
+<img src = "../X1smM.gif">Cristian Ghezzi - cug0308@cdc715_0.cdc.polimi.it
+<img src = "../X1smM.gif">
+</address>
+</body>
+</html>
