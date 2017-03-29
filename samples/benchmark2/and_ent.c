@@ -1,4 +1,9 @@
-/* Original file: AND_ent.vhd
+#define log_error(M, ...) fprintf(stderr, 
+  M 
+ 
+, __FILE__, __LINE__, ##__VA_ARGS__)
+
+void#define __MY_assert(A, M, ...) if(!(A)) {log_error(M, ##__VA_ARGS__); assert(A); } //Update to print the trace/* Original file: AND_ent.vhd
  * Translated by v2c 1.12
  * Integer size: 16 bits */
 
@@ -34,6 +39,15 @@ do {
    _cont_=0;
    /* Start of Translation */
 
+   /*@c2vhdl:ASSERT
+    *assert not (S='0' and R='1')
+    *report "Both values of signals S and R are equal to '1'"
+    *severity ERROR;
+    *@c2vhdl:END */
+
+//@c2vhdl:ASSERT - severity ERROR;
+__MY_assert(!(S='0' and R='1'),"Both values of signals S and R are equal to '1'")    *@c2vhdl:END */
+
    /* p0: */
    if (chg[x] || chg[y]) {
             /* compare to truth table */
@@ -45,15 +59,23 @@ do {
          }
       }
    /*@c2vhdl:ASSERT
-    *assert  (S= '1' and R= '1')
+    *assert not (S='1' and R='1')
     *report "Both values of signals S and R are equal to '1'"
     *severity ERROR;
-    *@c2vhdl:
-    *@c2vhdl:ASSERT
-    *assert  (S= '0' and R= '0')
+    *@c2vhdl:END */
+
+//@c2vhdl:ASSERT - severity ERROR;
+__MY_assert(!(S='1' and R='1'),"Both values of signals S and R are equal to '1'")    *@c2vhdl:END */
+
+    /*@c2vhdl:ASSERT
+    *assert (S='0' and R='0')
     *report "Both values of signals S and R are equal to '1'"
     *severity ERROR;
-    *@c2vhdl: */
+    *@c2vhdl:END */
+
+//@c2vhdl:ASSERT - severity ERROR;
+__MY_assert((S='0' and R='0'),"Both values of signals S and R are equal to '1'")    *@c2vhdl:END */
+
 
    /* End of Translation */
    for (_i_=0; _i_<_MAX_; _i_++)

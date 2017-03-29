@@ -29,72 +29,85 @@ def call_v2c(vhdl_file):
 def call_esbmc(cfile):
     output = commands.getoutput('modules/esbmc/esbmc ')
 
-def translatebk2c(listtextbkassert):
-    countlines = 0
-    newblock = []
-    codeC = []
-    while countlines < len(listtextbkassert):
-        if not "@c2vhdl:" in listtextbkassert[countlines]:
-            newblock.append(listtextbkassert[countlines])
-        else:
-            codeC.append(translate(newblock))
-            codeC.append("\n")
-            newblock = []
-        countlines+=1
-    print codeC
-
 def translate(newblock):
-    i = 1
+    countlines = 1
     newline=[]
-    aux = 0
-    global textassert
-
-    while i < len(newblock):
-        if "*assert" in newblock[i]:
-            matchassert1 = re.search(r'[()](.*)', newblock[i])
-        if newblock[i].find("not"):
-            aux = 0
-        else:
-            aux = 1
-        if "*report" in newblock[i]:
-            matchassert2 = re.search(r'"(.*)"',newblock[i])
-        if "*severity" in newblock[i]:
-            matchassert3 = re.search(r'severity(.*)',newblock[i])
-        i = i + 1
-    if aux == 1:
+    global aux
+    while countlines < len(newblock):
+        if "*assert" in newblock[countlines]:
+            matchassert1 = re.search(r'[()](.*)', newblock[countlines])
+            print newblock[countlines]
+            if re.search(r'not',newblock[countlines]):
+                aux = 0
+            else:
+                aux = 1
+        if "*report" in newblock[countlines]:
+            matchassert2 = re.search(r'"(.*)"',newblock[countlines])
+        if "*severity" in newblock[countlines]:
+            matchassert3 = re.search(r'severity(.*)',newblock[countlines])
+        countlines += 1
+    if aux == 0:
         # translate assert matchassert.group(0)
         textassert = "//@c2vhdl:ASSERT - " + str(matchassert3.group(0))+ "\n" + "__MY_assert(!" + str(matchassert1.group(0)) + "," + str(matchassert2.group(0)) + ")"
-    i = i + 1
+    else:
+        textassert = "//@c2vhdl:ASSERT - " + str(matchassert3.group(0))+ "\n" + "__MY_assert(" + str(matchassert1.group(0)) + "," + str(matchassert2.group(0)) + ")"
+
     return textassert
 
 def new_c(cfile):
     arquivo = open(cfile,"r+")
     linesC = arquivo.readlines()
     textnewcfile = []
+    newfileC = []
     textnewcfile.append("#define log_error(M, ...) fprintf(stderr, ""\n "" M ""\n \n"", __FILE__, __LINE__, ""##__VA_ARGS__)\n\nvoid")
     textnewcfile.append("#define __MY_assert(A, M, ...) if(!(A)) {log_error(M, ##__VA_ARGS__); assert(A); } //Update to print the trace")
 
     countlines = 0
     while countlines < len(linesC):
-        # Regex to identify asserts comments
+        if "*@c2vhdl:ASSERT" in linesC[countlines]:
+            match1 = re.search(r'(/\*)',linesC[countlines],re.IGNORECASE)
+            if not match1:
+                linesC[countlines] = re.sub(r'(\*)',"/*",linesC[countlines])
+            textnewcfile.append(linesC[countlines])
+            countlines+=1
+        if "*@c2vhdl:END" in linesC[countlines]:
+            match2 = re.search(r'(\*/)',linesC[countlines],re.IGNORECASE)
+            if not match2:
+                linesC[countlines] = re.sub(r'(END\n)',"END */\n",linesC[countlines])
+            textnewcfile.append(linesC[countlines])
+            textnewcfile.append("\n")
+            countlines+=1
+        else:
+            textnewcfile.append(linesC[countlines])
+            countlines+=1
+
+    countlines2 = 0
+    while countlines2 < len(textnewcfile):
         getblockassert = []
         flagsearch = False
-        textnewcfile.append(linesC[countlines].strip())
-        if "*@c2vhdl:ASSERT" in linesC[countlines]:
+        if "@c2vhdl:ASSERT" in textnewcfile[countlines2]:
             while not flagsearch:
-                getblockassert.append(linesC[countlines])
-                textnewcfile.append(linesC[countlines])
-                matchendbk = re.search(r'@c2vhdl:[\s]*[*]/', linesC[countlines])
-                if not matchendbk:
-                    countlines = countlines + 1
+                getblockassert.append(textnewcfile[countlines2])
+                newfileC.append(textnewcfile[countlines2])
+                matchblock = re.search(r'@c2vhdl:END \*/',textnewcfile[countlines2])
+                if not matchblock:
+                    countlines2+=1
                 else:
                     flagsearch = True
-            print getblockassert
-            # Translate the assert block
-            textnewcfile.append(translatebk2c(getblockassert))
-            textnewcfile.append("\n")
-        countlines = countlines + 1
+            newfileC.append("\n")
+            newfileC.append(translate(getblockassert))
+        newfileC.append(textnewcfile[countlines2])
+        countlines2+=1
 
+    arquivo.seek(0)
+    arquivo.truncate()
+
+    #print the new code
+    for u in newfileC:
+        arquivo.write(u)
+
+    for u in newfileC:
+        print u
 
 def call_c2vhdl(vhdl_file):
     call_v2c(vhdl_file)
