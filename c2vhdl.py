@@ -27,7 +27,8 @@ def call_v2c(vhdl_file):
     print output
 
 def call_esbmc(cfile):
-    output = commands.getoutput('modules/esbmc/esbmc ')
+    output = commands.getoutput('modules/esbmc/esbmc --64 '+str(cfile)+' --show-claims')
+    print output
 
 def translate(newblock):
     countlines = 1
@@ -36,7 +37,9 @@ def translate(newblock):
     while countlines < len(newblock):
         if "*assert" in newblock[countlines]:
             matchassert1 = re.search(r'[()](.*)', newblock[countlines])
-            print newblock[countlines]
+            assert1 = str(matchassert1.group(0))
+            assert1 = re.sub(r'and',"&&",assert1)
+            assert1 = re.sub(r'=',"==",assert1)
             if re.search(r'not',newblock[countlines]):
                 aux = 0
             else:
@@ -48,9 +51,9 @@ def translate(newblock):
         countlines += 1
     if aux == 0:
         # translate assert matchassert.group(0)
-        textassert = "//@c2vhdl:ASSERT - " + str(matchassert3.group(0))+ "\n" + "__MY_assert(!" + str(matchassert1.group(0)) + "," + str(matchassert2.group(0)) + ")"
+        textassert = "//@c2vhdl:ASSERT - " + str(matchassert3.group(0)) + "\n" + "__MY_assert(!" + assert1 + "," + str(matchassert2.group(0)) + ");"
     else:
-        textassert = "//@c2vhdl:ASSERT - " + str(matchassert3.group(0))+ "\n" + "__MY_assert(" + str(matchassert1.group(0)) + "," + str(matchassert2.group(0)) + ")"
+        textassert = "//@c2vhdl:ASSERT - " + str(matchassert3.group(0)) + "\n" + "__MY_assert(" + assert1 + "," + str(matchassert2.group(0)) + ");"
 
     return textassert
 
@@ -59,9 +62,9 @@ def new_c(cfile):
     linesC = arquivo.readlines()
     textnewcfile = []
     newfileC = []
-    textnewcfile.append("#define log_error(M, ...) fprintf(stderr, ""\n "" M ""\n \n"", __FILE__, __LINE__, ""##__VA_ARGS__)\n\nvoid")
-    textnewcfile.append("#define __MY_assert(A, M, ...) if(!(A)) {log_error(M, ##__VA_ARGS__); assert(A); } //Update to print the trace")
-
+    textnewcfile.append("#include<stdio.h>\n")
+    textnewcfile.append("#define log_error(M, ...) fprintf(stderr,  M , __FILE__, __LINE__, ""##__VA_ARGS__)\n")
+    textnewcfile.append("#define __MY_assert(A, M, ...) if(!(A)) {log_error(M, ##__VA_ARGS__); assert(A); } //Update to print the trace\n")
     countlines = 0
     while countlines < len(linesC):
         if "*@c2vhdl:ASSERT" in linesC[countlines]:
@@ -93,9 +96,11 @@ def new_c(cfile):
                 if not matchblock:
                     countlines2+=1
                 else:
+                    countlines2+=1
                     flagsearch = True
             newfileC.append("\n")
             newfileC.append(translate(getblockassert))
+            newfileC.append("\n")
         newfileC.append(textnewcfile[countlines2])
         countlines2+=1
 
@@ -106,16 +111,13 @@ def new_c(cfile):
     for u in newfileC:
         arquivo.write(u)
 
-    for u in newfileC:
-        print u
-
 def call_c2vhdl(vhdl_file):
     call_v2c(vhdl_file)
     path_cfile = path_cprogram(vhdl_file)
     nome_arquivo = alterar_tipo(vhdl_file)
     cfile = path_cfile+'/'+nome_arquivo
     new_c(cfile)
-    #call_esbmc(cfile)
+    call_esbmc(cfile)
     #print cfile
 
     # analisar resultado

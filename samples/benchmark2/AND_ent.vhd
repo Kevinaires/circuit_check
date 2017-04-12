@@ -14,8 +14,8 @@ architecture behav1 of AND_ent is
 begin
 
     --@c2vhdl:ASSERT
-    --assert not (S='0' and R='1')
-    --report "Both values of signals S and R are equal to '1'"
+    --assert not (x='0' and y='1')
+    --report "Both values of signals x and y are equal to 1"
     --severity ERROR;
     --@c2vhdl:END
 
@@ -28,17 +28,5 @@ begin
             F <= '0';
         end if;
     end process;
-
-    --@c2vhdl:ASSERT
-    --assert not (S='1' and R='1')
-    --report "Both values of signals S and R are equal to '1'"
-    --severity ERROR;
-    --@c2vhdl:END
-
-    --@c2vhdl:ASSERT
-    --assert (S='0' and R='0')
-    --report "Both values of signals S and R are equal to '1'"
-    --severity ERROR;
-    --@c2vhdl:END
 
 end behav1;
