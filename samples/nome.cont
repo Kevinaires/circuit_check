@@ -1,7 +1,0 @@
-parameters
-input	2
-	integer	[0,3]
-	integer	[0,1]
-output	2
-	integer	[0,3]
-	integer	[0,1]
