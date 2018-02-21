@@ -1,0 +1,6 @@
+
+*.tcl
+*.gif
+*.png
+*.ppm
+venv/tcl/tk8.6/demos/rmt
