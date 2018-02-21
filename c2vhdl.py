@@ -3,7 +3,7 @@
 
 import sys
 import os
-import commands
+import subprocess
 import argparse
 import string
 import re
@@ -23,12 +23,12 @@ def path_cprogram(vhdl_file):
     return os.path.dirname(vhdl_file)
 
 def call_v2c(vhdl_file):
-    output = commands.getoutput('modules/v2c/v2c '+str(vhdl_file))
-    print output
+    output = subprocess.getoutput('modules/v2c/v2c '+str(vhdl_file))
+    print(output)
 
 def call_esbmc(cfile):
-    output = commands.getoutput('modules/esbmc/esbmc --64 '+str(cfile)+' --show-claims')
-    print output
+    output = subprocess.getoutput('modules/esbmc/esbmc --64 '+str(cfile)+' --show-claims')
+    print (output)
 
 def translate(newblock):
     countlines = 1
@@ -130,26 +130,31 @@ def call_c2vhdl(vhdl_file):
 #TODO: com o caminho do codigo c gerado chamar o ESBMC
 
 # __MAIN__
-#TODO: Criar um menu para a ferramenta - map2check.py
+#Menu da ferramenta
 if __name__ == "__main__":
+    #Chamada do parser para criaçao dos argumentos do menu.
     parser = argparse.ArgumentParser(description='Run C2VHDL v1')
-    parser.add_argument('-v','--version', action='version' , version="version 1")
+    #Argumento para exibir a versão da ferramenta.
+    parser.add_argument('-v','--version', action='version', version="version 1")
+    #Argumento para checagem dos programa passado para função.
     parser.add_argument(dest='inputVHDLProgram', metavar='file.vhdl', type=str,
                         help='the VHDL program file to be analyzed')
 
+    #Salva os argumentao declarados.
     args = parser.parse_args()
-    ############# Check options in the args
-    ### vars to save data option
-    inputVHDLFile=""
-    inputCFile=""
 
+    #Arquivo VHDL de entrada para analise.
+    inputVHDLFile=""
+
+    #Verificação do arquivo passado por argumento.
     if args.inputVHDLProgram:
+        #Verifica se a função é um arquivo existente.
         if not os.path.isfile(args.inputVHDLProgram):
             print('Error: unable to open input file (%s)' % quote(args.inputVHDLProgram))
             parser.parse_args(['-h'])
             sys.exit()
         else:
+            #Caso seja um arquivo válido, o caminho do arquivo é passado para variável inputVHDLFile.
             inputVHDLFile = os.path.abspath(args.inputVHDLProgram)
 
-    # Run transformation
     call_c2vhdl(inputVHDLFile)
