@@ -4,21 +4,26 @@ use ieee.std_logic_1164.all;
 entity OR_ent is
 port(   x: in bit;
         y: in bit;
-        F: out bit
+        f: out bit
 );
 end OR_ent;  
 
-
 architecture OR_arch of OR_ent is
 begin
-    
+
+    --@c2vhdl:ASSERT
+    --assert not (x=__VERIFIER_nondet_int() and y=__VERIFIER_nondet_int())
+    --report "Both values of signals x and y are equal to 1"
+    --severity ERROR;
+    --@c2vhdl:END
+
     process(x, y)
     begin
         -- compare to truth table
         if ((x='0') and (y='0')) then
-            F <= '0';
+            f <= '0';
         else
-            F <= '1';
+            f <= '1';
         end if;
     end process;
 

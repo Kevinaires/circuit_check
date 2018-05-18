@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!--Created by yFiles for HTML 2.1-->
+<!--Created by yFiles for HTML 2.1.0.2-->
 <graphml xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns http://www.yworks.com/xml/schema/graphml.html/2.0/ygraphml.xsd " xmlns="http://graphml.graphdrawing.org/xmlns" xmlns:demostyle="http://www.yworks.com/yFilesHTML/demos/FlatDemoStyle/1.0" xmlns:bpmn="http://www.yworks.com/xml/yfiles-for-html/bpmn/2.0" xmlns:demotablestyle="http://www.yworks.com/yFilesHTML/demos/FlatDemoTableStyle/1.0" xmlns:uml="http://www.yworks.com/yFilesHTML/demos/UMLDemoStyle/1.0" xmlns:compat="http://www.yworks.com/xml/yfiles-compat-arrows/1.0" xmlns:VuejsNodeStyle="http://www.yworks.com/demos/yfiles-vuejs-node-style/1.0" xmlns:y="http://www.yworks.com/xml/yfiles-common/3.0" xmlns:x="http://www.yworks.com/xml/yfiles-common/markup/3.0" xmlns:yjs="http://www.yworks.com/xml/yfiles-for-html/2.0/xaml" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<key id="d0" for="node" attr.type="boolean" attr.name="Expanded" y:attr.uri="http://www.yworks.com/xml/yfiles-common/2.0/folding/Expanded">
 		<default>true</default>
@@ -36,6 +36,12 @@
 					<yjs:Arrow type="TRIANGLE" scale="0.75" stroke="{y:GraphMLReference 3}" fill="#FF336699" cropLength="1"/>
 				</yjs:PolylineEdgeStyle.targetArrow>
 			</yjs:PolylineEdgeStyle>
+			<yjs:Stroke x:Key="5" fill="#FF336699"/>
+			<yjs:PolylineEdgeStyle x:Key="6" stroke="{y:GraphMLReference 5}">
+				<yjs:PolylineEdgeStyle.targetArrow>
+					<yjs:Arrow type="TRIANGLE" scale="0.75" stroke="{y:GraphMLReference 5}" fill="#FF336699" cropLength="1"/>
+				</yjs:PolylineEdgeStyle.targetArrow>
+			</yjs:PolylineEdgeStyle>
 		</y:SharedData>
 	</data>
 	<graph id="G" edgedefault="directed">
@@ -51,14 +57,14 @@
 				</x:List>
 			</data>
 			<data key="d2">
-				<y:RectD X="780.28125" Y="-182.15625" Width="125.78125" Height="79.125"/>
+				<y:RectD X="755.46875" Y="-182.15625" Width="125.78125" Height="79.125"/>
 			</data>
 			<data key="d4">
 				<demostyle:FlowchartNodeStyle type="terminator" fill="{y:GraphMLReference 2}"/>
 			</data>
 			<port name="p0">
 				<data key="d11">
-					<y:FreeNodePortLocationModelParameter Ratio="0.00782587429689413,0.5"/>
+					<y:FreeNodePortLocationModelParameter Ratio="0.007825874296894186,0.5"/>
 				</data>
 			</port>
 		</node>
@@ -74,7 +80,7 @@
 				</x:List>
 			</data>
 			<data key="d2">
-				<y:RectD X="-53.125" Y="45.0625" Width="125.78125" Height="79.125"/>
+				<y:RectD X="-53.125" Y="39.84375" Width="125.78125" Height="79.125"/>
 			</data>
 			<data key="d4">
 				<demostyle:FlowchartNodeStyle type="data" fill="{y:GraphMLReference 2}"/>
@@ -130,7 +136,7 @@
 				</x:List>
 			</data>
 			<data key="d2">
-				<y:RectD X="111.34375" Y="45.0625" Width="125.78125" Height="79.125"/>
+				<y:RectD X="108.578125" Y="-68.546875" Width="125.78125" Height="79.125"/>
 			</data>
 			<data key="d4">
 				<demostyle:FlowchartNodeStyle type="data" fill="{y:GraphMLReference 2}"/>
@@ -158,11 +164,21 @@
 				</x:List>
 			</data>
 			<data key="d2">
-				<y:RectD X="108.578125" Y="-68.546875" Width="125.78125" Height="79.125"/>
+				<y:RectD X="108.578125" Y="-182.15625" Width="125.78125" Height="79.125"/>
 			</data>
 			<data key="d4">
 				<demostyle:FlowchartNodeStyle type="process" fill="{y:GraphMLReference 2}"/>
 			</data>
+			<port name="p0">
+				<data key="d11">
+					<y:FreeNodePortLocationModelParameter Ratio="0.00782587429689413,0.5"/>
+				</data>
+			</port>
+			<port name="p1">
+				<data key="d11">
+					<y:FreeNodePortLocationModelParameter Ratio="0.5,0.9876733436055469"/>
+				</data>
+			</port>
 		</node>
 		<node id="n5">
 			<data key="d1">
@@ -188,7 +204,7 @@
 			</port>
 			<port name="p1">
 				<data key="d11">
-					<y:FreeNodePortLocationModelParameter Ratio="0.5,0.9876733436055469"/>
+					<y:FreeNodePortLocationModelParameter Ratio="0.9132232819760333,0.5"/>
 				</data>
 			</port>
 		</node>
@@ -204,19 +220,19 @@
 				</x:List>
 			</data>
 			<data key="d2">
-				<y:RectD X="610.28125" Y="-182.15625" Width="125.78125" Height="79.125"/>
+				<y:RectD X="597.875" Y="-182.15625" Width="125.78125" Height="79.125"/>
 			</data>
 			<data key="d4">
 				<demostyle:FlowchartNodeStyle type="process" fill="{y:GraphMLReference 2}"/>
 			</data>
 			<port name="p0">
 				<data key="d11">
-					<y:FreeNodePortLocationModelParameter Ratio="0.9921741257031058,0.5"/>
+					<y:FreeNodePortLocationModelParameter Ratio="0.5,0.9876733436055469"/>
 				</data>
 			</port>
 			<port name="p1">
 				<data key="d11">
-					<y:FreeNodePortLocationModelParameter Ratio="0.00782587429689413,0.5"/>
+					<y:FreeNodePortLocationModelParameter Ratio="0.9921741257031058,0.5"/>
 				</data>
 			</port>
 		</node>
@@ -262,12 +278,12 @@
 			</data>
 			<port name="p0">
 				<data key="d11">
-					<y:FreeNodePortLocationModelParameter Ratio="0.00782587429689413,0.5"/>
+					<y:FreeNodePortLocationModelParameter Ratio="0.5,0.9876733436055469"/>
 				</data>
 			</port>
 			<port name="p1">
 				<data key="d11">
-					<y:FreeNodePortLocationModelParameter Ratio="0.5,0.9876733436055469"/>
+					<y:FreeNodePortLocationModelParameter Ratio="0.00782587429689413,0.5"/>
 				</data>
 			</port>
 		</node>
@@ -303,34 +319,6 @@
 			<data key="d1">
 				<x:List>
 					<y:Label LayoutParameter="{x:Static y:InteriorStretchLabelModel.Center}">
-						<y:Label.Text><![CDATA[Comando inicial da ferramenta]]></y:Label.Text>
-						<y:Label.Style>
-							<yjs:DefaultLabelStyle verticalTextAlignment="CENTER" horizontalTextAlignment="CENTER" wrapping="WORD" clipText="false" font="{y:GraphMLReference 1}" textFill="BLACK"/>
-						</y:Label.Style>
-					</y:Label>
-				</x:List>
-			</data>
-			<data key="d2">
-				<y:RectD X="111.34375" Y="-182.15625" Width="125.78125" Height="79.125"/>
-			</data>
-			<data key="d4">
-				<demostyle:FlowchartNodeStyle type="manualOperation" fill="{y:GraphMLReference 2}"/>
-			</data>
-			<port name="p0">
-				<data key="d11">
-					<y:FreeNodePortLocationModelParameter Ratio="0.04695524578136462,0.5"/>
-				</data>
-			</port>
-			<port name="p1">
-				<data key="d11">
-					<y:FreeNodePortLocationModelParameter Ratio="0.5,0.9876733436055469"/>
-				</data>
-			</port>
-		</node>
-		<node id="n11">
-			<data key="d1">
-				<x:List>
-					<y:Label LayoutParameter="{x:Static y:InteriorStretchLabelModel.Center}">
 						<y:Label.Text><![CDATA[Analise código com ESBMC]]></y:Label.Text>
 						<y:Label.Style>
 							<yjs:DefaultLabelStyle verticalTextAlignment="CENTER" horizontalTextAlignment="CENTER" wrapping="WORD" clipText="false" font="{y:GraphMLReference 1}" textFill="BLACK"/>
@@ -339,23 +327,23 @@
 				</x:List>
 			</data>
 			<data key="d2">
-				<y:RectD X="440.28125" Y="39.84375" Width="125.78125" Height="79.125"/>
+				<y:RectD X="597.875" Y="-68.546875" Width="125.78125" Height="79.125"/>
 			</data>
 			<data key="d4">
 				<demostyle:FlowchartNodeStyle type="process" fill="{y:GraphMLReference 2}"/>
 			</data>
 			<port name="p0">
 				<data key="d11">
-					<y:FreeNodePortLocationModelParameter Ratio="0.5,0.012326656394453017"/>
+					<y:FreeNodePortLocationModelParameter Ratio="0.00782587429689413,0.5"/>
 				</data>
 			</port>
 			<port name="p1">
 				<data key="d11">
-					<y:FreeNodePortLocationModelParameter Ratio="0.9921741257031058,0.5"/>
+					<y:FreeNodePortLocationModelParameter Ratio="0.5,0.012326656394453017"/>
 				</data>
 			</port>
 		</node>
-		<node id="n12">
+		<node id="n11">
 			<data key="d1">
 				<x:List>
 					<y:Label LayoutParameter="{x:Static y:InteriorStretchLabelModel.Center}">
@@ -383,7 +371,7 @@
 				</data>
 			</port>
 		</node>
-		<node id="n13">
+		<node id="n12">
 			<data key="d1">
 				<x:List>
 					<y:Label LayoutParameter="{x:Static y:InteriorStretchLabelModel.Center}">
@@ -411,7 +399,7 @@
 				</data>
 			</port>
 		</node>
-		<node id="n14">
+		<node id="n13">
 			<data key="d1">
 				<x:List>
 					<y:Label LayoutParameter="{x:Static y:InteriorStretchLabelModel.Center}">
@@ -444,59 +432,22 @@
 				<y:GraphMLReference ResourceKey="4"/>
 			</data>
 		</edge>
-		<edge id="e1" source="n6" target="n0" sourceport="p0" targetport="p0">
+		<edge id="e1" source="n2" target="n9" sourceport="p1" targetport="p0">
 			<data key="d8">
 				<y:GraphMLReference ResourceKey="4"/>
 			</data>
 		</edge>
-		<edge id="e2" source="n2" target="n9" sourceport="p1" targetport="p0">
+		<edge id="e2" source="n9" target="n1" sourceport="p1" targetport="p0">
 			<data key="d8">
 				<y:GraphMLReference ResourceKey="4"/>
 			</data>
 		</edge>
-		<edge id="e3" source="n9" target="n1" sourceport="p1" targetport="p0">
+		<edge id="e3" source="n8" target="n11" sourceport="p0" targetport="p0">
 			<data key="d8">
 				<y:GraphMLReference ResourceKey="4"/>
 			</data>
 		</edge>
-		<edge id="e4" source="n1" target="n10" sourceport="p1" targetport="p0">
-			<data key="d7">
-				<x:List>
-					<y:Bend Location="80.75,84.625"/>
-					<y:Bend Location="87.75,-142.59375"/>
-				</x:List>
-			</data>
-			<data key="d8">
-				<y:GraphMLReference ResourceKey="4"/>
-			</data>
-		</edge>
-		<edge id="e5" source="n10" target="n3" sourceport="p1" targetport="p0">
-			<data key="d7">
-				<x:List>
-					<y:Bend Location="174.234375,-73.5715283127889"/>
-				</x:List>
-			</data>
-			<data key="d8">
-				<y:GraphMLReference ResourceKey="4"/>
-			</data>
-		</edge>
-		<edge id="e6" source="n3" target="n8" sourceport="p1" targetport="p0">
-			<data key="d7">
-				<x:List>
-					<y:Bend Location="248.75,84.625"/>
-					<y:Bend Location="248.75,-142.59375"/>
-				</x:List>
-			</data>
-			<data key="d8">
-				<y:GraphMLReference ResourceKey="4"/>
-			</data>
-		</edge>
-		<edge id="e7" source="n8" target="n12" sourceport="p1" targetport="p0">
-			<data key="d8">
-				<y:GraphMLReference ResourceKey="4"/>
-			</data>
-		</edge>
-		<edge id="e8" source="n12" target="n14" sourceport="p1" targetport="p0">
+		<edge id="e4" source="n11" target="n13" sourceport="p1" targetport="p0">
 			<data key="d7">
 				<x:List>
 					<y:Bend Location="338.703125,40.81909668721109"/>
@@ -506,7 +457,7 @@
 				<y:GraphMLReference ResourceKey="4"/>
 			</data>
 		</edge>
-		<edge id="e9" source="n14" target="n13" sourceport="p1" targetport="p0">
+		<edge id="e5" source="n13" target="n12" sourceport="p1" targetport="p0">
 			<data key="d7">
 				<x:List>
 					<y:Bend Location="420.75,79.40625"/>
@@ -517,25 +468,57 @@
 				<y:GraphMLReference ResourceKey="4"/>
 			</data>
 		</edge>
-		<edge id="e10" source="n13" target="n5" sourceport="p1" targetport="p0">
+		<edge id="e6" source="n12" target="n5" sourceport="p1" targetport="p0">
 			<data key="d8">
 				<y:GraphMLReference ResourceKey="4"/>
 			</data>
 		</edge>
-		<edge id="e11" source="n5" target="n11" sourceport="p1" targetport="p0">
-			<data key="d8">
-				<y:GraphMLReference ResourceKey="4"/>
-			</data>
-		</edge>
-		<edge id="e12" source="n11" target="n6" sourceport="p1" targetport="p1">
+		<edge id="e7" source="n1" target="n4" sourceport="p1" targetport="p0">
 			<data key="d7">
 				<x:List>
-					<y:Bend Location="588.75,79.40625"/>
-					<y:Bend Location="588.75,-142.59375"/>
+					<y:Bend Location="94.125,79.40625"/>
+					<y:Bend Location="94.125,-142.59375"/>
+					<y:Bend Location="109.56247325140622,-142.59375"/>
 				</x:List>
 			</data>
 			<data key="d8">
-				<y:GraphMLReference ResourceKey="4"/>
+				<y:GraphMLReference ResourceKey="6"/>
+			</data>
+		</edge>
+		<edge id="e8" source="n4" target="n3" sourceport="p1" targetport="p0">
+			<data key="d7">
+				<x:List>
+					<y:Bend Location="172.75,-67.5715283127889"/>
+				</x:List>
+			</data>
+			<data key="d8">
+				<y:GraphMLReference ResourceKey="6"/>
+			</data>
+		</edge>
+		<edge id="e9" source="n3" target="n8" sourceport="p1" targetport="p1">
+			<data key="d7">
+				<x:List>
+					<y:Bend Location="248.625,-28.984375"/>
+					<y:Bend Location="248.625,-142.59375"/>
+				</x:List>
+			</data>
+			<data key="d8">
+				<y:GraphMLReference ResourceKey="6"/>
+			</data>
+		</edge>
+		<edge id="e10" source="n5" target="n10" sourceport="p1" targetport="p0">
+			<data key="d8">
+				<y:GraphMLReference ResourceKey="6"/>
+			</data>
+		</edge>
+		<edge id="e11" source="n10" target="n6" sourceport="p1" targetport="p0">
+			<data key="d8">
+				<y:GraphMLReference ResourceKey="6"/>
+			</data>
+		</edge>
+		<edge id="e12" source="n6" target="n0" sourceport="p1" targetport="p0">
+			<data key="d8">
+				<y:GraphMLReference ResourceKey="6"/>
 			</data>
 		</edge>
 	</graph>

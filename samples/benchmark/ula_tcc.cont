@@ -1,0 +1,10 @@
+parameters
+input	5
+	integer	[0,255]
+	integer	[0,1]
+	integer	[0,1]
+	integer	[0,1]
+	integer	[0,1]
+output	2
+	integer	[0,255]
+	integer	[0,1]

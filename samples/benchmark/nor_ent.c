@@ -2,13 +2,13 @@
 #define log_error(M, ...) fprintf(stderr,  M , __FILE__, __LINE__, ##__VA_ARGS__)
  //Update to print the trace
 #define __MY_assert(A, M, ...) if(!(A)) {log_error(M, ##__VA_ARGS__); assert(A); }
-/* Original file: AND_ent.vhd
+/* Original file: NOR_ent.vhd
  * Translated by v2c 1.12
  * Integer size: 16 bits */
 
 /* library ieee;
  * use ieee.std_logic_1164.all; */
-void and_ent(int in_data[], int out_data[])
+void nor_ent(int in_data[], int out_data[])
 {
 int _i_=0;
 int _cont_;
@@ -42,7 +42,8 @@ do {
 
    /* p0: */
    if (chg[x] || chg[y]) {
-            if (((old[x]==1) && (old[y]==1))) {
+            /* compare to truth table */
+      if (((old[x]==0) && (old[y]==0))) {
          new[f]=1;
          }
       else {

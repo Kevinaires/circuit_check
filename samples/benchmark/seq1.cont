@@ -1,0 +1,10 @@
+parameters
+input	4
+	integer	[0,2097151]
+	integer	[0,1]
+	integer	[0,1]
+	integer	[0,1]
+output	3
+	integer	[0,2097151]
+	integer	[0,1]
+	integer	[0,1]

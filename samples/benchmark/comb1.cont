@@ -1,0 +1,9 @@
+parameters
+input	4
+	integer	[0,262143]
+	integer	[-32768,32767]
+	integer	[-32768,32767]
+	integer	[0,3]
+output	2
+	integer	[0,262143]
+	integer	[-32768,32767]

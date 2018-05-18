@@ -1,0 +1,9 @@
+parameters
+input	4
+	integer	[0,15]
+	integer	[0,1]
+	integer	[0,1]
+	integer	[0,1]
+output	2
+	integer	[0,15]
+	integer	[0,1]

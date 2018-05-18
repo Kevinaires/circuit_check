@@ -42,6 +42,7 @@ def in_out(vhdl_file):
 def call_v2c(vhdl_file):
     #Executa a ferramenta V2C
     output = subprocess.getoutput('modules/v2c/v2c '+str(vhdl_file))
+    print(output)
     #Busca o caminho path do arquivo
     arq = str(os .path.basename(vhdl_file))
     #Formata o caminho do arquivo C gerado do V2C
@@ -55,6 +56,7 @@ def new_c(cfile):
     arquivo = open(cfile,"r+")
     #Salva o conteudo do arquivo em uma lista.
     linesC = arquivo.readlines()
+    #print(*linesC)
     #Cria a lista textnewcfile.
     textnewcfile = []
     #Cria a lista asserts.
@@ -65,7 +67,7 @@ def new_c(cfile):
     textnewcfile.append("#define log_error(M, ...) fprintf(stderr,  M , __FILE__, __LINE__, ""##__VA_ARGS__)\n")
     # Adiciona a string entre parentese na lista textnewcfile.
     textnewcfile.append(" //Update to print the trace\n#define __MY_assert(A, M, ...) if(!(A)) {log_error(M, ##__VA_ARGS__); assert(A); }\n")
-    countlines = 7
+    countlines = 0
     #Percorre o arquivo C em busca das assertivas.
     while countlines < len(linesC):
         #Caso encontre a tag inicial da assertiva, continua o loop até a tag final.
@@ -136,7 +138,7 @@ def esbmc_claims(claims, cfile):
     while countlines1 < len(claims):
         print("Claim sendo executada: Claim " + str(claims[countlines1] + "\n"))
         #Comando para execução do unwind
-        output = subprocess.getoutput('modules/esbmc/esbmc --64 --function '+ str(namefunct)+' '+str(cfile)+' --unwind 100 --claim '+str(claims[countlines1]))
+        output = subprocess.getoutput('modules/esbmc/esbmc --64 --function '+ str(namefunct)+' '+str(cfile)+' --unwind 10 --no-pointer-check --no-div-by-zero-check --claim '+str(claims[countlines1]))
         output = output.split("\n")
         violated_line = len(output)+1
         while countlines2 < len(output):
@@ -160,8 +162,9 @@ def call_esbmc(cfile):
     #lista de claims envolvendo assertivas
     claims = []
     countlines = 0
-    #COmando para geração das claims no ESBMC
+    #Comando para geração das claims no ESBMC
     output = subprocess.getoutput('modules/esbmc/esbmc --64 '+str(cfile)+' --show-claims').split("\n")
+    print(subprocess.getoutput('modules/esbmc/esbmc --64 '+str(cfile)+' --show-claims'))
     while countlines < len(output):
         #identificar as claims geradas
         matchclaim = re.search(r'^Claim[ ]*([0-9]*)',output[countlines])

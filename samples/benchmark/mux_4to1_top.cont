@@ -1,0 +1,8 @@
+parameters
+input	3
+	integer	[0,255]
+	integer	[0,3]
+	integer	[0,3]
+output	2
+	integer	[0,255]
+	integer	[0,15]
